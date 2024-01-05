@@ -1,5 +1,7 @@
 package com.belleBiju.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,10 +17,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUser;
 
+    @NotNull
+    @NotBlank(message = "Campo obrigatório: nome")
     private String nome;
 
+    @NotNull
+    @NotBlank(message = "Campo obrigatório: username")
     private String username;
 
+    @NotNull
+    @NotBlank(message = "Campo obrigatório: password")
     private String password;
 
     private LocalDateTime createdAt;
