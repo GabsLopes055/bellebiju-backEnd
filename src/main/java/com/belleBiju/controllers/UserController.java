@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "api/users")
 public class UserController {
@@ -20,6 +22,11 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserResponse> SaveNewUser(@RequestBody @Valid UserRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.SaveNewUser(request));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> listAllUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.ListAllUsers());
     }
 
 }

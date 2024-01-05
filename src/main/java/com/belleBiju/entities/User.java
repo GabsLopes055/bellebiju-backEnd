@@ -1,9 +1,12 @@
 package com.belleBiju.entities;
+import com.belleBiju.entities.Enums.ROLES_PERMISSIONS;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -28,6 +31,9 @@ public class User {
     @NotNull
     @NotBlank(message = "Campo obrigatório: password")
     private String password;
+
+    @Enumerated
+    private List<ROLES_PERMISSIONS> roles = new ArrayList<>();
 
     private LocalDateTime createdAt;
 
@@ -68,4 +74,11 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
+    public List<ROLES_PERMISSIONS> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<ROLES_PERMISSIONS> roles) {
+        this.roles = roles;
+    }
 }

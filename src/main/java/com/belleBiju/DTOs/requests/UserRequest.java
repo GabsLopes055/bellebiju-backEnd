@@ -1,18 +1,17 @@
 package com.belleBiju.DTOs.requests;
 
+import com.belleBiju.entities.Enums.ROLES_PERMISSIONS;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 
 @Data
 public class UserRequest {
-
-    @Positive(message = "O id do usuário deve ser um número positivo.")
-    private UUID idUser;
 
     @NotBlank(message = "O campo nome não pode estar vazio")
     @NotNull(message = "O nome do usuário não pode ser em branco.")
@@ -25,6 +24,8 @@ public class UserRequest {
     @NotBlank(message = "O campo password não pode estar vazio")
     @NotNull(message = "O nome do password não pode ser em branco.")
     private String password;
+
+    private List<ROLES_PERMISSIONS> roles;
 
     public String getNome() {
         return nome;
@@ -48,5 +49,13 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<ROLES_PERMISSIONS> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<ROLES_PERMISSIONS> roles) {
+        this.roles = roles;
     }
 }
