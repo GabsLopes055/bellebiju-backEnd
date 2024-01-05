@@ -5,14 +5,14 @@ import com.belleBiju.entities.Enums.ROLES_PERMISSIONS;
 import com.belleBiju.entities.User;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
 public class UserResponse {
 
     private UUID idUser;
@@ -25,11 +25,55 @@ public class UserResponse {
 
     private List<ROLES_PERMISSIONS> roles;
 
+    public UUID getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(UUID idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<ROLES_PERMISSIONS> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<ROLES_PERMISSIONS> roles) {
+        this.roles = roles;
+    }
+
     public UserResponse(User user) {
         this.idUser = user.getIdUser();
         this.nome = user.getNome();
         this.username = user.getUsername();
         this.createdAt = user.getCreatedAt();
         this.roles = user.getRoles();
+    }
+
+    public UserResponse() {
+
     }
 }

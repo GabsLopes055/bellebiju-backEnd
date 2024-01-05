@@ -7,9 +7,12 @@ import com.belleBiju.repository.UserRepository;
 import com.belleBiju.security.EncryptPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.belleBiju.service.exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +54,35 @@ public class UserService {
 //       }
 
         return listUsers.stream().map(UserResponse::new).collect(Collectors.toList());
+    }
+
+    /*Editar usuario*/
+    public UserResponse editUser(UserRequest request, UUID uuid) {
+
+        Optional<User> findUser = Optional.ofNullable(repository.findById(uuid).orElseThrow(
+                () -> new EntityNotFoundException("Usuário não encontrado para o ID: " + uuid)));
+
+        findUser.get().setNome(request.getNome());
+        findUser.get().setUsername(request.getUsername());
+        findUser.get().setRoles(request.getRoles());
+
+        repository.save(findUser.get());
+
+        return new UserResponse(findUser.get());
+
+    }
+
+    /*Metodo para excluir um usuario*/
+    public boolean deletarUsuario(UUID idUser) {
+        Optional<User> findUser = Optional.ofNullable(repository.findById(idUser).orElseThrow(
+                () -> new EntityNotFoundException("Usuário não encontrado para o ID: " + idUser)));
+
+        if(findUser.isPresent()){
+            repository.deleteById(idUser);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
