@@ -1,58 +1,63 @@
 package com.belleBiju.entities;
-
-import com.belleBiju.entities.Enums.FormaPagamento;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tbl_user")
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUser;
 
-    private String nomeProduto;
+    private String nome;
 
-    private float preco;
+    private String username;
 
-    private int quantidade;
-
-    private float total;
-
-    private FormaPagamento formaPagamento;
+    private String password;
 
     private LocalDateTime createdAt;
 
-    private LocalDateTime updateAt;
-
-    @PrePersist
-    public void prePersist(){
-        this.setCreatedAt(LocalDateTime.now());
-        this.setUpdateAt(LocalDateTime.now());
+    public UUID getIdUser() {
+        return  idUser;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdateAt(){
-        return updateAt;
-    }
-
-    public void setUpdateAt(LocalDateTime updateAt){
-        this.updateAt = updateAt;
+    @PrePersist
+    public void setCreatedAt(){
+        this.createdAt = LocalDateTime.now();
     }
 
 }
