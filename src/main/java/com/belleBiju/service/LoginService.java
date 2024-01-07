@@ -6,7 +6,8 @@ import com.belleBiju.DTOs.responses.UserResponse;
 import com.belleBiju.entities.User;
 import com.belleBiju.repository.UserRepository;
 import com.belleBiju.security.EncryptPassword;
-import com.belleBiju.service.exceptions.EntityNotFoundException;
+import com.belleBiju.service.exceptions.EntityNotFound;
+import com.belleBiju.service.exceptions.UnauthorizedPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,26 +23,15 @@ public class LoginService {
     EncryptPassword encoder;
 
 
-    public Object isAuthetenticate(LoginRequest request){
-
+    public UserResponse isAuthetenticate(LoginRequest request) {
         Optional<User> findUser = Optional.ofNullable(Optional.ofNullable(repository.findByUsername(request.getUsername()))
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado")));
+                .orElseThrow(() -> new EntityNotFound("Usuario não encontrado")));
 
-        if(!validatePassword(request.getPassword(), findUser.get().getPassword())){
-            return new EntityNotFoundException("Senha incorreta");
+        if (validatePassword(request.getPassword(), findUser.get().getPassword())) {
+            return new UserResponse(findUser.get());
+        } else {
+            throw new UnauthorizedPassword("Senha incorreta");
         }
-
-        UserResponse user = new UserResponse();
-
-        user.setIdUser(findUser.get().getIdUser());
-        user.setNome(findUser.get().getNome());
-        user.setUsername(findUser.get().getUsername());
-        user.setCreatedAt(findUser.get().getCreatedAt());
-        user.setRoles(findUser.get().getRoles());
-
-        return user;
-
-
     }
 
     public boolean validatePassword(CharSequence rawPassword, String encodedPassword){

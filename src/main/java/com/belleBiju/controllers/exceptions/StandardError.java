@@ -15,7 +15,7 @@ public class StandardError {
 
     private Instant timestamp;
     private Integer status;
-    private List<String> error = new ArrayList<>();
+    private String error;
     private String message;
     private String path;
 
@@ -35,11 +35,11 @@ public class StandardError {
         this.status = status;
     }
 
-    public List<String> getError() {
+    public String getError() {
         return error;
     }
 
-    public void setError(List<String> error) {
+    public void setError(String error) {
         this.error = error;
     }
 
