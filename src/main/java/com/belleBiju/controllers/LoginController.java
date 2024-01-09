@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "api/authentication")
-@CrossOrigin("*")
+@CrossOrigin(value = "*")
 public class LoginController {
 
 

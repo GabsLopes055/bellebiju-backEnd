@@ -4,11 +4,6 @@ package com.belleBiju.DTOs.responses;
 import com.belleBiju.entities.Enums.ROLES_PERMISSIONS;
 import com.belleBiju.entities.User;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
