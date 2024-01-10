@@ -1,5 +1,6 @@
 package com.belleBiju.entities;
 
+import com.belleBiju.DTOs.requests.VendasRequest;
 import com.belleBiju.entities.Enums.FormaPagamento;
 import jakarta.persistence.*;
 
@@ -28,21 +29,6 @@ public class Vendas {
 
     private LocalDateTime updateAt;
 
-    public Vendas(){}
-
-    public Vendas(UUID id, String nomeProduto, float preco, int quantidade, float total, FormaPagamento formaPagamento, LocalDateTime createAt, LocalDateTime updateAt) {
-        this.id = id;
-        this.nomeProduto = nomeProduto;
-        this.preco = preco;
-        this.quantidade = quantidade;
-        this.total = total;
-        this.formaPagamento = formaPagamento;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-    }
-
-    public Vendas(String nomeProduto, float preco, int quantidade, float total, FormaPagamento formaPagamento) {
-    }
 
     @PrePersist
     private void preCreatedAt(){

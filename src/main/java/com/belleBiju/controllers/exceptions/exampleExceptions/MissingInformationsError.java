@@ -1,23 +1,15 @@
-package com.belleBiju.controllers.exceptions;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+package com.belleBiju.controllers.exceptions.exampleExceptions;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
-@Getter
-@Setter
-public class StandardError {
+public class MissingInformationsError {
 
     private Instant timestamp;
     private Integer status;
-    private String error;
+    private List<String> error = new ArrayList<>();
     private String message;
-    private String path;
 
     public Instant getTimestamp() {
         return timestamp;
@@ -35,11 +27,11 @@ public class StandardError {
         this.status = status;
     }
 
-    public String getError() {
+    public List<String> getError() {
         return error;
     }
 
-    public void setError(String error) {
+    public void setError(List<String> error) {
         this.error = error;
     }
 
@@ -51,11 +43,5 @@ public class StandardError {
         this.message = message;
     }
 
-    public String getPath() {
-        return path;
-    }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
 }

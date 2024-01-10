@@ -2,30 +2,40 @@ package com.belleBiju.DTOs.requests;
 
 import com.belleBiju.entities.Enums.FormaPagamento;
 import com.belleBiju.entities.Vendas;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public class VendasRequest {
 
+    @NotBlank(message = "O campo Nome do produto não pode ser vazio")
+    @NotNull(message = "Nome do produto esta ausente")
     private String nomeProduto;
 
+    @NotNull(message = "Preco da venda esta ausente")
+    @Positive
     private float preco;
 
+    @NotNull(message = "A Quantidade esta ausente")
+    @Positive
     private int quantidade;
 
+    @NotNull(message = "Total da venda esta ausente")
+    @Positive
     private float total;
 
+    @NotNull(message = "Forma de Pagamento esta ausente")
     private FormaPagamento formaPagamento;
 
 
-    public Vendas toModel(Vendas request){
-        return new Vendas(request.getNomeProduto(), request.getPreco(), request.getQuantidade(), request.getTotal(), request.getFormaPagamento());
-    }
-
-    public VendasRequest(String nomeProduto, float preco, int quantidade, float total, FormaPagamento formaPagamento) {
-        this.nomeProduto = nomeProduto;
-        this.preco = preco;
-        this.quantidade = quantidade;
-        this.total = total;
-        this.formaPagamento = formaPagamento;
+    public Vendas toModel(VendasRequest request) {
+        Vendas response = new Vendas();
+        response.setNomeProduto(request.getNomeProduto());
+        response.setPreco(request.getPreco());
+        response.setQuantidade(request.getQuantidade());
+        response.setTotal(request.getTotal());
+        response.setFormaPagamento(request.formaPagamento);
+        return response;
     }
 
     public String getNomeProduto() {

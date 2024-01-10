@@ -1,5 +1,6 @@
 package com.belleBiju.controllers.exceptions;
 
+import com.belleBiju.controllers.exceptions.exampleExceptions.StandardError;
 import com.belleBiju.service.exceptions.EntityNotFound;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
