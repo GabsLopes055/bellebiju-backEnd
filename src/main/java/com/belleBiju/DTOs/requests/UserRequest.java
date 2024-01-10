@@ -25,7 +25,7 @@ public class UserRequest {
     @NotNull(message = "O nome do password não pode ser em branco.")
     private String password;
 
-    private List<ROLES_PERMISSIONS> roles;
+    private ROLES_PERMISSIONS roles;
 
     public String getNome() {
         return nome;
@@ -51,11 +51,11 @@ public class UserRequest {
         this.password = password;
     }
 
-    public List<ROLES_PERMISSIONS> getRoles() {
+    public ROLES_PERMISSIONS getRoles() {
         return roles;
     }
 
-    public void setRoles(List<ROLES_PERMISSIONS> roles) {
+    public void setRoles(ROLES_PERMISSIONS roles) {
         this.roles = roles;
     }
 }

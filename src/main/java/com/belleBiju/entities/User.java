@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class User {
     private String password;
 
     @Enumerated
-    private List<ROLES_PERMISSIONS> roles = new ArrayList<>();
+    private ROLES_PERMISSIONS roles;
 
     private LocalDateTime createdAt;
 
@@ -74,11 +76,11 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    public List<ROLES_PERMISSIONS> getRoles() {
+    public ROLES_PERMISSIONS getRoles() {
         return roles;
     }
 
-    public void setRoles(List<ROLES_PERMISSIONS> roles) {
+    public void setRoles(ROLES_PERMISSIONS roles) {
         this.roles = roles;
     }
 }

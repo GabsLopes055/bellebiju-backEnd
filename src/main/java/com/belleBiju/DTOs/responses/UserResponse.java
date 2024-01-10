@@ -18,7 +18,7 @@ public class UserResponse {
 
     private LocalDateTime createdAt;
 
-    private List<ROLES_PERMISSIONS> roles;
+    private ROLES_PERMISSIONS roles;
 
     public UUID getIdUser() {
         return idUser;
@@ -52,11 +52,11 @@ public class UserResponse {
         this.createdAt = createdAt;
     }
 
-    public List<ROLES_PERMISSIONS> getRoles() {
+    public ROLES_PERMISSIONS getRoles() {
         return roles;
     }
 
-    public void setRoles(List<ROLES_PERMISSIONS> roles) {
+    public void setRoles(ROLES_PERMISSIONS roles) {
         this.roles = roles;
     }
 
