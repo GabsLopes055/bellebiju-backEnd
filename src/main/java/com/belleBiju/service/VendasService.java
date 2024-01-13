@@ -31,9 +31,7 @@ public class VendasService {
     /*Metodo para listar todas as vendas*/
     public List<VendasResponse> listAllVendas() {
 
-        List<Vendas> listVendas = repository.findAll();
-
-
+        List<Vendas> listVendas = repository.findAllDesc();
 
         List<VendasResponse> responseVendas = new ArrayList<>();
 
