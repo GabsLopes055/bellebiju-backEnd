@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface VendasRepository extends JpaRepository<Vendas, UUID> {
 
-    @Query(value = "SELECT * FROM tbl_vendas ORDER BY id DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM tbl_vendas WHERE DATE(create_at) = CURRENT_DATE ORDER BY create_at DESC", nativeQuery = true)
     List<Vendas> findAllDesc();
 
 }
