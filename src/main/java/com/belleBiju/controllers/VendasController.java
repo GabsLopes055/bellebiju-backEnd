@@ -35,5 +35,10 @@ public class VendasController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listAllVendas());
     }
 
+    @PostMapping("/{inicio}/{fim}")
+    public ResponseEntity<List<VendasResponse>> listAllVendasByDates(@PathVariable(value = "inicio") String inicio, @PathVariable(value = "fim") String fim) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.listVendasByDates(inicio,fim));
+    }
+
 
 }

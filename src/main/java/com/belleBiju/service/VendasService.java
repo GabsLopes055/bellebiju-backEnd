@@ -45,6 +45,22 @@ public class VendasService {
 
     }
 
+    public List<VendasResponse> listVendasByDates(String inicio, String fim) {
+
+        System.out.println(inicio + fim);
+
+        List<Vendas> listVendas = repository.findByVendasWhereDate(inicio, fim);
+
+        List<VendasResponse> responseVendas = new ArrayList<>();
+
+        for (Vendas response : listVendas) {
+            VendasResponse vendasResponse = new VendasResponse().toModelResponse(response);
+            responseVendas.add(vendasResponse);
+        }
+
+        return responseVendas;
+    }
+
 
 
 }
