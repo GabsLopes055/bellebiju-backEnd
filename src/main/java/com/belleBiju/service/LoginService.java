@@ -35,7 +35,7 @@ public class LoginService {
     }
 
     public boolean validatePassword(CharSequence rawPassword, String encodedPassword){
-        return encoder.EncryptPassword().matches(rawPassword, encodedPassword);
+        return encoder.passwordEncoder().matches(rawPassword, encodedPassword);
     }
 
 

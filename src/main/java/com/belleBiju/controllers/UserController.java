@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "api/users")
+@RequestMapping(value = "/api/users")
 @CrossOrigin("*")
 public class UserController {
 
@@ -24,8 +24,8 @@ public class UserController {
     }
 
     /*Metodo para salvar usuario*/
-    @PostMapping
-    public ResponseEntity<UserResponse> saveNewUser(@RequestBody @Valid UserRequest request){
+    @PostMapping("/register")
+    public ResponseEntity<UserResponse> saveNewUser(@RequestBody @Valid UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.SaveNewUser(request));
     }
 

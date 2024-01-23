@@ -5,9 +5,9 @@ import com.belleBiju.DTOs.responses.UserResponse;
 import com.belleBiju.entities.User;
 import com.belleBiju.repository.UserRepository;
 import com.belleBiju.security.EncryptPassword;
+import com.belleBiju.service.exceptions.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.belleBiju.service.exceptions.EntityNotFound;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +31,9 @@ public class UserService {
 
         user.setNome(request.getNome());
         user.setUsername(request.getUsername());
-        user.setPassword(encode.EncryptPassword().encode(request.getPassword())); // criptografando a senha do usuario
+        user.setPassword(encode.passwordEncoder().encode(request.getPassword())); // criptografando a senha do usuario
         user.setRoles(request.getRoles());
+
 
         repository.save(user);
 

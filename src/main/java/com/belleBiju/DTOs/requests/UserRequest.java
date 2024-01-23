@@ -9,8 +9,6 @@ import lombok.Data;
 import java.util.List;
 import java.util.UUID;
 
-
-@Data
 public class UserRequest {
 
     @NotBlank(message = "O campo nome não pode estar vazio")
