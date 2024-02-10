@@ -48,6 +48,7 @@ public class VendasService {
 
     }
 
+    /*listar por datas*/
     public List<VendasResponse> listVendasByDates(String inicio, String fim) {
 
         System.out.println(inicio + fim);
@@ -64,6 +65,7 @@ public class VendasService {
         return responseVendas;
     }
 
+    /*editar venda*/
     public VendasResponse editVenda(VendasRequest request, UUID idVenda) {
 
         Optional<Vendas> findVenda = Optional.ofNullable(repository.findById(idVenda).orElseThrow(() -> new EntityNotFound("Venda não encontrada !")));
@@ -82,6 +84,7 @@ public class VendasService {
 
     }
 
+    /*excluir venda*/
     public boolean deleteVenda(UUID idVenda) {
 
         Optional<Vendas> findVenda = Optional.ofNullable(repository.findById(idVenda).orElseThrow(() -> new EntityNotFound("Venda não encontrada !")));

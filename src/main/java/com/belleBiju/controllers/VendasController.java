@@ -37,10 +37,12 @@ public class VendasController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listAllVendas());
     }
 
+    /*Metodo para pesquisar por duas datas*/
     @PostMapping("/{inicio}/{fim}")
     public ResponseEntity<List<VendasResponse>> listAllVendasByDates(@PathVariable(value = "inicio") String inicio, @PathVariable(value = "fim") String fim) {
         return ResponseEntity.status(HttpStatus.OK).body(service.listVendasByDates(inicio,fim));
     }
+
 
     @PutMapping("/{idVenda}")
     public ResponseEntity<VendasResponse> editVenda(@PathVariable(value = "idVenda") UUID idVenda, @RequestBody @Valid VendasRequest request) {
