@@ -16,12 +16,12 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("${JWT}")
-    private String secretKey;
+
+    private String secret = "BelleBiju";
 
     public String generateToken(User user){
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secretKey);
+            Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("auth")
                     .withSubject(user.getUsername())
@@ -35,7 +35,7 @@ public class TokenService {
 
     public String validateToken(String token){
         try{
-            Algorithm algorithm = Algorithm.HMAC256(secretKey);
+            Algorithm algorithm = Algorithm.HMAC256(secret);
             return  JWT.require(algorithm)
                     .withIssuer("auth")
                     .build()
