@@ -16,7 +16,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/vendas")
-@CrossOrigin("*")
 public class VendasController {
 
 
