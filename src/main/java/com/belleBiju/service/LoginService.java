@@ -34,10 +34,14 @@ public class LoginService {
         }
     }
 
-    public boolean validatePassword(CharSequence rawPassword, String encodedPassword){
-        return encoder.passwordEncoder().matches(rawPassword, encodedPassword);
+    public boolean findByUser(String username) {
+        User findUser = this.repository.findByUsername(username);
+        return findUser != null;
     }
 
+    public boolean validatePassword(CharSequence rawPassword, String encodedPassword) {
+        return encoder.passwordEncoder().matches(rawPassword, encodedPassword);
+    }
 
 
 }
