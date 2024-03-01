@@ -16,7 +16,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/vendas")
-@CrossOrigin("*")
 public class VendasController {
 
 
@@ -49,7 +48,7 @@ public class VendasController {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.editVenda(request, idVenda));
     }
 
-    @DeleteMapping("{idVenda}")
+    @DeleteMapping("/{idVenda}")
     public ResponseEntity<String> deleteVenda(@PathVariable(value = "idVenda") UUID idVenda) {
         if(this.service.deleteVenda(idVenda)) return ResponseEntity.status(HttpStatus.OK).body("Venda Deletada");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao Excluir Venda !");

@@ -13,7 +13,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/users")
-@CrossOrigin("*")
 public class UserController {
 
 
