@@ -33,7 +33,10 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationToken> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+
+        if(this.service.findByUser(request.getUsername())) {
+
 
         var usernamePassword = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
 
@@ -46,6 +49,11 @@ public class LoginController {
         response.AuthenticationToken(token);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário ou senha incorretos");
+
+
     }
 
 }

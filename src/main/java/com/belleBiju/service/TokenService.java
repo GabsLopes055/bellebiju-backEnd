@@ -16,8 +16,13 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
+<<<<<<< HEAD
+//    @Value("${JWT}")
+    private String secretKey = "BelleBiju";
+=======
 
     private String secret = "BelleBiju";
+>>>>>>> 5c3f1168fb771b957681ccb52e765b89bcb92529
 
     public String generateToken(User user){
         try {
@@ -47,7 +52,7 @@ public class TokenService {
     }
 
     private Instant ExpirationDate() {
-        return LocalDateTime.now().plusMinutes(5).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusMinutes(30).toInstant(ZoneOffset.of("-03:00"));
     }
 
 }
