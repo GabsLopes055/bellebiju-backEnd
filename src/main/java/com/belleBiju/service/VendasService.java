@@ -51,8 +51,6 @@ public class VendasService {
     /*listar por datas*/
     public List<VendasResponse> listVendasByDates(String inicio, String fim) {
 
-        System.out.println(inicio + fim);
-
         List<Vendas> listVendas = repository.findByVendasWhereDate(inicio, fim);
 
         List<VendasResponse> responseVendas = new ArrayList<>();
