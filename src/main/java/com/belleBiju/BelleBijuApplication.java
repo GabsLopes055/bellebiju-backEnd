@@ -34,6 +34,6 @@ public class BelleBijuApplication implements CommandLineRunner {
 		userRequest.setPassword("teste");
 		userRequest.setRoles(ROLES_PERMISSIONS.ADMIN);
 
-		userService.SaveNewUser(userRequest);
+        // userService.SaveNewUser(userRequest);
 	}
 }
