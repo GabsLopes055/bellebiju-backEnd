@@ -1,11 +1,10 @@
 package com.belleBiju.controllers;
 
 import com.belleBiju.DTOs.requests.VendasRequest;
+import com.belleBiju.DTOs.responses.PaginaResponse;
 import com.belleBiju.DTOs.responses.VendasResponse;
 import com.belleBiju.service.VendasService;
-import jakarta.validation.Path;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/vendas")
-@CrossOrigin(value = "*")
 public class VendasController {
 
 
@@ -33,8 +31,10 @@ public class VendasController {
 
     /*Metodo para retornar todas as vendas realizadas*/
     @GetMapping
-    public ResponseEntity<List<VendasResponse>> listAllVendas() {
-        return ResponseEntity.status(HttpStatus.OK).body(service.listAllVendas());
+    public ResponseEntity<PaginaResponse<VendasResponse>> listAllVendas(
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "10") int tamanho) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.listAllVendas(pagina, tamanho));
     }
 
     /*Metodo para pesquisar por duas datas*/

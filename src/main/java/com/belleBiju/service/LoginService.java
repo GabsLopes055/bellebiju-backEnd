@@ -8,6 +8,8 @@ import com.belleBiju.repository.UserRepository;
 import com.belleBiju.security.EncryptPassword;
 import com.belleBiju.service.exceptions.EntityNotFound;
 import com.belleBiju.service.exceptions.UnauthorizedPassword;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 
 @Service
 public class LoginService {
+
+    private static final Logger log = LoggerFactory.getLogger(LoginService.class);
 
     @Autowired
     UserRepository repository;
@@ -36,6 +40,9 @@ public class LoginService {
 
     public boolean findByUser(String username) {
         User findUser = this.repository.findByUsername(username);
+        if (findUser == null) {
+            log.warn("Tentativa de login com usuário inexistente: {}", username);
+        }
         return findUser != null;
     }
 

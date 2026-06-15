@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/graficos")
-@CrossOrigin(value = "*")
 public class GraficoPizzaController {
 
     private final GraficoPizzaService graficoPizzaService;

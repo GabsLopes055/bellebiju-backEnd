@@ -20,16 +20,6 @@ public class GraficoPizzaResponse {
 
     public GraficoPizzaResponse(){}
 
-    public GraficoPizzaResponse toModelGrafico(Object object) {
-        GraficoPizzaResponse response = new GraficoPizzaResponse();
-        response.setCredito(object.getClass().getModifiers());
-        response.setDebito(object.getClass().getModifiers());
-        response.setDinheiro(object.getClass().getModifiers());
-        response.setPix(object.getClass().getModifiers());
-
-        return response;
-    }
-
     public int getDinheiro() {
         return dinheiro;
     }

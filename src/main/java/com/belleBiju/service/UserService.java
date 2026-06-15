@@ -5,8 +5,10 @@ import com.belleBiju.DTOs.responses.UserResponse;
 import com.belleBiju.entities.User;
 import com.belleBiju.repository.UserRepository;
 import com.belleBiju.security.EncryptPassword;
+import com.belleBiju.DTOs.responses.PaginaResponse;
 import com.belleBiju.service.exceptions.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,17 +45,10 @@ public class UserService {
 
 
     /*Listar todos os usuários*/
-    public List<UserResponse> ListAllUsers() {
-
-        /*lista de usuarios*/
-        List<User> listUsers = repository.findAll();
-
-//       for(User user: listUsers) {
-//           UserResponse userResponse = new UserResponse(user);
-//           listResponse.add(userResponse);
-//       }
-
-        return listUsers.stream().map(UserResponse::new).collect(Collectors.toList());
+    public PaginaResponse<UserResponse> ListAllUsers(int pagina, int tamanho) {
+        return new PaginaResponse<>(
+                repository.findAll(PageRequest.of(pagina, tamanho)).map(UserResponse::new)
+        );
     }
 
     /*Editar usuario*/

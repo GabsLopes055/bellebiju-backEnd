@@ -1,6 +1,7 @@
 package com.belleBiju.controllers;
 
 import com.belleBiju.DTOs.requests.UserRequest;
+import com.belleBiju.DTOs.responses.PaginaResponse;
 import com.belleBiju.DTOs.responses.UserResponse;
 import com.belleBiju.service.UserService;
 import jakarta.validation.Valid;
@@ -8,12 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/users")
-@CrossOrigin(value = "*")
 public class UserController {
 
 
@@ -31,8 +30,10 @@ public class UserController {
 
     /*metodo para listar todos os usuarios*/
     @GetMapping
-    public ResponseEntity<List<UserResponse>> listAllUsers() {
-        return ResponseEntity.status(HttpStatus.OK).body(service.ListAllUsers());
+    public ResponseEntity<PaginaResponse<UserResponse>> listAllUsers(
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "10") int tamanho) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.ListAllUsers(pagina, tamanho));
     }
 
     /*Metodo para editar um usuario*/

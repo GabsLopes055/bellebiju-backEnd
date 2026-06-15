@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.util.UUID;
+
 public class VendasRequest {
 
     @NotBlank(message = "O campo Nome do produto não pode ser vazio")
@@ -27,6 +29,7 @@ public class VendasRequest {
     @NotNull(message = "Forma de Pagamento esta ausente")
     private FormaPagamento formaPagamento;
 
+    private UUID idProduto;
 
     public Vendas toModel(VendasRequest request) {
         Vendas response = new Vendas();
@@ -76,5 +79,13 @@ public class VendasRequest {
 
     public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
+    }
+
+    public UUID getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(UUID idProduto) {
+        this.idProduto = idProduto;
     }
 }

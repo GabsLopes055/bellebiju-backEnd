@@ -1,6 +1,5 @@
 package com.belleBiju.entities;
 
-import com.belleBiju.DTOs.requests.VendasRequest;
 import com.belleBiju.entities.Enums.FormaPagamento;
 import jakarta.persistence.*;
 
@@ -25,13 +24,16 @@ public class Vendas {
 
     private FormaPagamento formaPagamento;
 
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Produto produto;
+
     private LocalDateTime createAt;
 
     private LocalDateTime updateAt;
 
-
     @PrePersist
-    private void preCreatedAt(){
+    private void preCreatedAt() {
         this.setCreateAt(LocalDateTime.now());
     }
 
@@ -86,6 +88,14 @@ public class Vendas {
 
     public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public LocalDateTime getCreateAt() {
