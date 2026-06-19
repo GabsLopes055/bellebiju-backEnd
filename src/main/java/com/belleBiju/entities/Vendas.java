@@ -34,7 +34,9 @@ public class Vendas {
 
     @PrePersist
     private void preCreatedAt() {
-        this.setCreateAt(LocalDateTime.now());
+        if (this.createAt == null) {
+            this.setCreateAt(LocalDateTime.now());
+        }
     }
 
     @PreUpdate

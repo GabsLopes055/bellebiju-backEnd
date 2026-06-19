@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class VendasRequest {
@@ -31,6 +32,8 @@ public class VendasRequest {
 
     private UUID idProduto;
 
+    private LocalDateTime dataVenda;
+
     public Vendas toModel(VendasRequest request) {
         Vendas response = new Vendas();
         response.setNomeProduto(request.getNomeProduto());
@@ -38,6 +41,9 @@ public class VendasRequest {
         response.setQuantidade(request.getQuantidade());
         response.setTotal(request.getTotal());
         response.setFormaPagamento(request.formaPagamento);
+        if (request.getDataVenda() != null) {
+            response.setCreateAt(request.getDataVenda());
+        }
         return response;
     }
 
@@ -87,5 +93,13 @@ public class VendasRequest {
 
     public void setIdProduto(UUID idProduto) {
         this.idProduto = idProduto;
+    }
+
+    public LocalDateTime getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(LocalDateTime dataVenda) {
+        this.dataVenda = dataVenda;
     }
 }

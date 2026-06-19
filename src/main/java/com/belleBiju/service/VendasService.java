@@ -81,6 +81,9 @@ public class VendasService {
         venda.setTotal(request.getTotal());
         venda.setQuantidade(request.getQuantidade());
         venda.setFormaPagamento(request.getFormaPagamento());
+        if (request.getDataVenda() != null) {
+            venda.setCreateAt(request.getDataVenda());
+        }
 
         return new VendasResponse().toModelResponse(repository.save(venda));
     }
